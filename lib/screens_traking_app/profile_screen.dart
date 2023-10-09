@@ -9,7 +9,7 @@ class ProfileLoginScreen extends StatefulWidget {
 }
 
 class _ProfileLoginScreenState extends State<ProfileLoginScreen> {
-  double _position = 500;
+  double _position = 100;
   bool _unlocked = false;
   @override
   Widget build(BuildContext context) {
@@ -170,20 +170,23 @@ class _ProfileLoginScreenState extends State<ProfileLoginScreen> {
               },
               child: AnimatedContainer(
                   duration: Duration(milliseconds: 300),
-                  //  width: _unlocked ? 0 : _position,
+                  width: MediaQuery.of(context).size.width - 100,
                   height: 60,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: _unlocked ? Colors.green : Colors.red,
+                    color:
+                        _unlocked == false ? Colors.green : Colors.transparent,
                     border: Border.all(
-                      color: Colors.white,
+                      color: _unlocked == false
+                          ? Colors.green
+                          : Colors.transparent,
                       width: 2,
                     ),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Stack(
                     children: [
-                      _unlocked
+                      _unlocked == false
                           ? Align(
                               alignment: Alignment.centerLeft,
                               child: CircleAvatar(
@@ -195,24 +198,30 @@ class _ProfileLoginScreenState extends State<ProfileLoginScreen> {
                             )
                           : Align(
                               alignment: Alignment.centerRight,
-                              child: CircleAvatar(
-                                child: Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                ),
+                              child: Icon(
+                                Icons.check,
+                                color: Colors.transparent,
                               ),
-                            )
+                            ),
+                      _unlocked == false
+                          ? Center(child: Text("Unlocak Your trip"))
+                          : Card(
+                              color: Colors.green,
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Center(child: Text("Trip Booked")))
                     ],
                   )),
             ),
             MaterialButton(
-              child: Text("reset"),
-              onPressed: (){
-              setState(() {
-                _unlocked =!_unlocked;
-                _position = 500;
-              });
-            })
+                child: Text("reset"),
+                onPressed: () {
+                  setState(() {
+                    _unlocked = !_unlocked;
+                    _position = 500;
+                  });
+                })
           ],
         ),
       ),
