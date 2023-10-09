@@ -77,9 +77,17 @@ class _ProfileLoginScreenState extends State<ProfileLoginScreen> {
                     ),
                     subtitle: const Text("Your living home"),
                   ),
+                  const Divider(
+                    indent: 20,
+                    thickness: 1,
+                  ),
                   ListTile(
                     leading: Icon(CupertinoIcons.bag),
                     title: Text("Enter work loction", style: listtitlestyle),
+                  ),
+                  const Divider(
+                    indent: 20,
+                    thickness: 1,
                   ),
                   ListTile(
                     leading: Icon(Icons.add),
@@ -98,6 +106,10 @@ class _ProfileLoginScreenState extends State<ProfileLoginScreen> {
                     title: Text("Language", style: listtitlestyle),
                     subtitle: Text("English-GB"),
                   ),
+                  const Divider(
+                    indent: 20,
+                    thickness: 1,
+                  ),
                   ListTile(
                     title: Text("Communication Preferences",
                         style: listtitlestyle),
@@ -114,6 +126,10 @@ class _ProfileLoginScreenState extends State<ProfileLoginScreen> {
                   ListTile(
                     leading: Icon(Icons.logout_outlined),
                     title: Text("Log out", style: listtitlestyle),
+                  ),
+                  const Divider(
+                    indent: 20,
+                    thickness: 1,
                   ),
                   ListTile(
                     leading: Icon(CupertinoIcons.delete),
