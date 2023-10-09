@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:slidable_button/slidable_button.dart';
 
 class ProfileLoginScreen extends StatefulWidget {
   const ProfileLoginScreen({super.key});
@@ -11,6 +12,8 @@ class ProfileLoginScreen extends StatefulWidget {
 class _ProfileLoginScreenState extends State<ProfileLoginScreen> {
   double _position = 100;
   bool _unlocked = false;
+  String result = "Let's slide!";
+
   @override
   Widget build(BuildContext context) {
     EdgeInsetsGeometry containermargin = const EdgeInsets.fromLTRB(0, 10, 0, 0);
@@ -230,14 +233,47 @@ class _ProfileLoginScreenState extends State<ProfileLoginScreen> {
                     ],
                   )),
             ),
-            MaterialButton(
-                child: Text("reset"),
-                onPressed: () {
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: HorizontalSlidableButton(
+                width: MediaQuery.of(context).size.width,
+                height: 60,
+                buttonWidth: 60,
+                color: Colors.green,
+                buttonColor: Colors.green,
+                dismissible: false,
+                label: Center(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal:5),
+                        height: 50,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(40))),
+                        child: Center(child: Text('->')))),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('Start your trip'),
+                      Text('Slide to confirm'),
+                    ],
+                  ),
+                ),
+                onChanged: (position) {
                   setState(() {
-                    _unlocked = !_unlocked;
-                    _position = 500;
+                    if (position == SlidableButtonPosition.end) {
+                      result = 'Button is on the right';
+                    } else {
+                      result = 'Button is on the left';
+                    }
                   });
-                })
+                },
+              ),
+            ),
           ],
         ),
       ),
